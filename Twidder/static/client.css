@@ -1,0 +1,98 @@
+body {
+    background-color: aquamarine;
+    font-size: 12px;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+div.container {
+    width: 600px;
+    height: 400px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 100px auto auto auto;
+}
+
+/* Style the slogan class */
+div.slogan {
+    width: 340px;
+    height: 400px;
+    float: left;
+    margin: 0px 0px 0px 0px;
+}
+
+/* Style the sign in class */
+div.signin {
+    width: 250px;
+    height: 90px;
+    float: left;
+    margin: 0px 0px 0px 10px;
+}
+input.btn.btn-default.btn-xs {
+    width: 250px;
+}
+
+
+/* Style the sign up class */
+div.signup {
+    width: 250px;
+    height: 300px;
+    float: left;
+    margin: 10px 0px 0px 10px;
+}
+#signupbutton {
+    width: 250px;
+    height: 28px;
+}
+
+/* Style the list */
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Float the list items side by side */
+ul.tab li {
+    float: left;
+}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {background-color: #ddd;}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {background-color: #ccc;}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: white;
+}
+
+/* Style the chart produced by d3.js */
+.chart div div {
+  font: 12px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  margin: 1px;
+  color: white;
+}
