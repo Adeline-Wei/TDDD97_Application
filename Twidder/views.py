@@ -212,7 +212,9 @@ DATABASE = 'database.db'
 
 @app.route("/")
 def index():
+    print("aaaaaa")
     return app.send_static_file('client.html')
+    # return "Hellooooooo"
 
 
 def init_database():
@@ -221,6 +223,7 @@ def init_database():
 
 
 if __name__ == "__main__":
+    print("main")
     init_database()
-    http_server = WSGIServer(('', 5004), app, handler_class=WebSocketHandler)
+    http_server = WSGIServer(('', 5000), app, handler_class=WebSocketHandler)
     http_server.serve_forever()
