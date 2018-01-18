@@ -1,5 +1,5 @@
 var socket = "";
-var PORT = "5000";
+var PORT = "5004";
 
 notificationHandler = function(signal){
     if (signal == "BYE") {
@@ -139,11 +139,13 @@ sendSignUpInformation = function(){
     con.onreadystatechange = function () {
         if (con.readyState == 4 && con.status == 200) {
             var response = JSON.parse(con.responseText);
+            console.log("response:"+response);
             if (response['status'] == 200) {
                 var infoObj2 = JSON.stringify({
                     'email':email,
                     'password':password
                 });
+                console.log("infoObj2:"+infoObj2);
                 var con2 = new XMLHttpRequest();
                 con2.onreadystatechange = function() {
                     if (con2.readyState == 4 && con2.status == 200) {

@@ -6,7 +6,6 @@ import sqlite3
 
 DB = None
 
-
 def init_db(db_name):
     global DB
     DB = get_db(db_name)
@@ -16,13 +15,15 @@ def init_db(db_name):
             DB.commit()
         except:
             print("Database Initialization Failed.")
-    return None
+            return False
+    return True
 
 
 def get_db(db_name):
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = sqlite3.connect(db_name, check_same_thread=False)
+        print("db: ", db)
     return db
 
 
@@ -31,11 +32,18 @@ def add_user(email,password,firstname,familyname,gender,city,country):
     global DB
     try:
         DB.cursor().execute('INSERT INTO Users VALUES (?,?,?,?,?,?,?);', [email,password,firstname,familyname,gender,city,country])
+        DB.commit()
+    except Exception:
+        print ('An Exception Occurs In ADD_USER Function Users. ')
+        return False
+    # except sqlite3.Error as er:
+    #     print('er:', er)
+    try:
         DB.cursor().execute('INSERT INTO Views VALUES (?,?,?);', [None, email, 0])
         DB.commit()
         return True
     except Exception:
-        print ('An Exception Occurs In ADD_USER Function. ')
+        print ('An Exception Occurs In ADD_USER Function Views. ')
         return False
 
 

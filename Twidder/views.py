@@ -15,6 +15,11 @@ app = Flask(__name__)
 active_connections = dict()
 
 
+@app.route("/")
+def index():
+    return app.send_static_file('client.html')
+
+
 @app.route("/sign_in", methods=['POST'])
 def sign_in():
     """
@@ -39,6 +44,7 @@ def sign_up():
     :return: status 200 if sign up successfully, otherwise 400.
     """
     data = request.get_json()
+    print(data)
     result = database_helper.add_user(data['email'], data['password'], data['firstname'], data['familyname'], data['gender'], data['city'], data['country'])
 
     if result:
@@ -209,21 +215,16 @@ def show_chart():
 
 
 DATABASE = 'database.db'
-
-@app.route("/")
-def index():
-    print("aaaaaa")
-    return app.send_static_file('client.html')
-    # return "Hellooooooo"
+print("__name__: ", __name__)
 
 
 def init_database():
+    print("init_database done")
     with app.app_context():
         database_helper.init_db(DATABASE)
 
 
 if __name__ == "__main__":
-    print("main")
     init_database()
-    http_server = WSGIServer(('', 5000), app, handler_class=WebSocketHandler)
+    http_server = WSGIServer(('', 5004), app, handler_class=WebSocketHandler)
     http_server.serve_forever()
