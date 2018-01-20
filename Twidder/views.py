@@ -2,12 +2,11 @@ __author__ = 'linwe991'
 
 import random
 from flask import Flask, jsonify, request
-# from Twidder import database_helper
-import database_helper
+from Twidder import database_helper
 from gevent.wsgi import WSGIServer
 from geventwebsocket.handler import WebSocketHandler
 from geventwebsocket.websocket import WebSocketError
-# from Twidder import app
+from Twidder import app
 import json
 
 app = Flask(__name__)
