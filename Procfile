@@ -1,1 +1,1 @@
-web: gunicorn app_run:Twidder
+web: gunicorn gettingstarted.wsgi
