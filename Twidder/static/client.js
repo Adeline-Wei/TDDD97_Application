@@ -1,5 +1,5 @@
 var socket = "";
-var PORT = "5000";
+var PORT = "5001";
 
 notificationHandler = function(signal){
     if (signal == "BYE") {
@@ -154,7 +154,7 @@ sendSignUpInformation = function(){
                         localStorage.setItem('token', response2['token']);
                         localStorage.setItem('email', email);
                         if (socket == "") {
-                            socket = new WebSocket("ws://127.0.0.1:5001/send_notification");
+                            socket = new WebSocket("ws://127.0.0.1:"+PORT+"/send_notification");
                             socket.onopen = function () {
                                 socket.send(JSON.stringify({"signal": "NOTIFY_LOGIN", "data": [email, response2['token']]}));
                             }

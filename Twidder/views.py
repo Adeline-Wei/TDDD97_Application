@@ -230,16 +230,17 @@ def show_chart():
     return jsonify({'num_cur_onlines': num_cur_onlines, 'num_posts': num_posts, 'num_views': num_views})
 
 
-DATABASE = 'database.db'
-
 
 def init_database():
     print("views.py - init_database")
     with app.app_context():
         database_helper.init_db(DATABASE)
 
-init_database()
 
+DATABASE = 'database.db'
+init_database()
+http_server = WSGIServer(('', 5001), app, handler_class=WebSocketHandler)
+http_server.serve_forever()
 
 # if __name__ == "__main__":
 #     print("views.py - __main__")
