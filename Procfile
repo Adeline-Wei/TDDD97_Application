@@ -1,1 +1,1 @@
-web gunicorn Twidder:app
+web: gunicorn Twidder.wsgi --log-file -
