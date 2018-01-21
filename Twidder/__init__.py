@@ -18,7 +18,7 @@ def index():
     return app.send_static_file('client.html')
 
 print("__init__.py - Outside the scope")
-PORT = 5005
+PORT = 6000
 while True:
 	try:
 		http_server = WSGIServer(('', PORT), app, handler_class=WebSocketHandler)
@@ -27,11 +27,9 @@ while True:
 	except OSError as oserror:
 		if oserror.errno != 98:
 			raise
-		print("OSError") 
 		print("Port ", PORT, "already in use.")
 		PORT += 1
 	else:
-		print("BREAK")
 		break
 
 if __name__ == "__main__":
