@@ -1,15 +1,17 @@
 __author__ = 'linwe991'
+print("views.py")
 
+from Twidder import app
 import random
 from flask import Flask, jsonify, request
 from Twidder import database_helper
 from gevent.wsgi import WSGIServer
 from geventwebsocket.handler import WebSocketHandler
 from geventwebsocket.websocket import WebSocketError
-from Twidder import app
 import json
 
 app = Flask(__name__)
+
 
 # Store webSockets
 active_connections = dict()
@@ -17,6 +19,7 @@ active_connections = dict()
 
 @app.route("/")
 def index():
+    print("views.py - index")
     return app.send_static_file('client.html')
 
 
@@ -25,6 +28,7 @@ def sign_in():
     """
     :return: status 200 and a token if sign in successfully, otherwise status 400.
     """
+    print("views.py - sign_in")
     data = request.get_json()
     result = database_helper.find_user(data['email'], password=data['password'], status='LOGIN')
     if result:
@@ -43,6 +47,7 @@ def sign_up():
     """
     :return: status 200 if sign up successfully, otherwise 400.
     """
+    print("views.py - sign_up")
     data = request.get_json()
     print(data)
     result = database_helper.add_user(data['email'], data['password'], data['firstname'], data['familyname'], data['gender'], data['city'], data['country'])
@@ -58,6 +63,7 @@ def sign_out():
     """
     :return: status 200 if sign out successfully, otherwise 400.
     """
+    print("views.py - sign_out")
     token = request.args.get('token')
     result = database_helper.remove_sign_in_user(token)
     if result:
@@ -71,6 +77,7 @@ def change_password():
     """
     :return: status 200 if change password successfully, otherwise 400.
     """
+    print("views.py - change_password")
     data = request.get_json()
     result = database_helper.change_password(data['token'], data['old_pw'], data['new_pw'])
     if result:
@@ -84,6 +91,7 @@ def get_user_data_by_token():
     """
     :return: status 200 and user information if get user data successfully, otherwise status 400.
     """
+    print("views.py - get_user_data_by_token")
     token = request.args.get('token')
     result = database_helper.find_sign_in_user(token)
     if result:
@@ -97,6 +105,7 @@ def get_user_data_by_email():
     """
     :return: status 200 and user information (except his/her password) if get data successfully, otherwise status 400.
     """
+    print("views.py - get_user_data_by_email")
     token = request.args.get('token')
     email = request.args.get('email')
     result = database_helper.find_sign_in_user(token)
@@ -115,6 +124,7 @@ def get_user_messages_by_token():
     """
     :return: finding result and messages of a user if get messages successfully, otherwise status 400.
     """
+    print("views.py - get_user_messages_by_token")
     token = request.args.get('token')
     print('current_user[UP]:', token)
     result, messages = database_helper.find_user_message(token)
@@ -129,6 +139,7 @@ def get_user_messages_by_email():
     """
     :return: finding result and messages of a user if get messages successfully, otherwise status 400.
     """
+    print("views.py - get_user_messages_by_email")
     token = request.args.get('token')
     email = request.args.get('email')
     result, messages = database_helper.find_user_message(token=token,search_email=email)
@@ -143,6 +154,7 @@ def post_message():
     """
     :return: posting result if post a message successfully, otherwise status 400.
     """
+    print("views.py - post_message")
     data = request.get_json()
     result = database_helper.add_message(data['token'], data['message'], data['email'])
     if result:
@@ -157,6 +169,7 @@ def send_notification():
     Send notifications to corresponding users according to different situations.
     :return: None
     """
+    print("views.py - send_notification")
     if request.environ.get('wsgi.websocket'):
         ws = request.environ['wsgi.websocket']
         while True:
@@ -199,6 +212,7 @@ def add_viewed_time():
     """
     :return: adding view result
     """
+    print("views.py - add_viewed_time")
     viewed_email = request.args.get('viewed_email')
     result = database_helper.add_viewed_time(viewed_email)
     return jsonify(result=result)
@@ -209,22 +223,24 @@ def show_chart():
     """
     :return: number of current online users, number of posts of a user, and number of views of a user.
     """
+    print("views.py - show_chart")
     email = request.args.get('email')
     num_cur_onlines, num_posts, num_views = database_helper.show_chart(email)
     return jsonify({'num_cur_onlines': num_cur_onlines, 'num_posts': num_posts, 'num_views': num_views})
 
 
 DATABASE = 'database.db'
-print("__name__: ", __name__)
 
 
 def init_database():
-    print("init_database done")
+    print("views.py - init_database")
     with app.app_context():
         database_helper.init_db(DATABASE)
 
 
 if __name__ == "__main__":
+    print("views.py - __main__")
     init_database()
+    # app.run(port=5004, debug=1)
     http_server = WSGIServer(('', 5004), app, handler_class=WebSocketHandler)
     http_server.serve_forever()

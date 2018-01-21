@@ -1,4 +1,7 @@
+MANIFEST.in
 Twidder/__init__.py
+Twidder/database.db
+Twidder/database.schema
 Twidder/database_helper.py
 Twidder/views.py
 Twidder.egg-info/PKG-INFO
@@ -6,3 +9,8 @@ Twidder.egg-info/SOURCES.txt
 Twidder.egg-info/dependency_links.txt
 Twidder.egg-info/requires.txt
 Twidder.egg-info/top_level.txt
+Twidder/static/.DS_Store
+Twidder/static/client.css
+Twidder/static/client.html
+Twidder/static/client.js
+Twidder/static/wimage.png

@@ -1,4 +1,5 @@
 __author__ = 'linwe991'
+print("database_helper.py")
 
 from flask import g
 import sqlite3
