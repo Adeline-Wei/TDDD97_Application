@@ -1,1 +1,1 @@
-web: gunicorn -k gevent Twidder:app
+web: gevent Twidder:app
