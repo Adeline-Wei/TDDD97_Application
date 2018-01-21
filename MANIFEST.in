@@ -1,0 +1,3 @@
+graft Twidder/static
+include Twidder/database.schema
+include Twidder/database.db
