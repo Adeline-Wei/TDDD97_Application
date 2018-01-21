@@ -25,7 +25,7 @@ while True:
 		print("Serving on port:", PORT)
 		http_server.serve_forever()
 	except OSError as oserror:
-		if oserror.errno != 48:
+		if oserror.errno != 98:
 			raise
 		print("OSError") 
 		print("Port ", PORT, "already in use.")
