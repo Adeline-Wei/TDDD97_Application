@@ -1,1 +1,1 @@
-web: gunicorn Twidder:app -b 0.0.0.0:$PORT -k gevent
+web: gunicorn Twidder:app

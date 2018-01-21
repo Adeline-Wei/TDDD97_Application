@@ -1,5 +1,5 @@
 var socket = "";
-var PORT = "5001";
+var PORT = "5004";
 
 notificationHandler = function(signal){
     if (signal == "BYE") {
