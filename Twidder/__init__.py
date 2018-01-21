@@ -18,26 +18,26 @@ def index():
     return app.send_static_file('client.html')
 
 print("__init__.py - Outside the scope")
-# PORT = 6000
-# while True:
-# 	try:
-# 		http_server = WSGIServer(('', PORT), app, handler_class=WebSocketHandler)
-# 		print("Serving on port:", PORT)
-# 		http_server.serve_forever()
-# 	except OSError as oserror:
-# 		if oserror.errno != 98:
-# 			raise
-# 		print("Port ", PORT, "already in use.")
-# 		PORT += 1
-# 	else:
-# 		break
+PORT = 6000
+while True:
+	try:
+		http_server = WSGIServer(('', PORT), app, handler_class=WebSocketHandler)
+		print("Serving on port:", PORT)
+		http_server.serve_forever()
+	except OSError as oserror:
+		if oserror.errno != 98:
+			raise
+		print("Port ", PORT, "already in use.")
+		PORT += 1
+	else:
+		break
 
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 	# pass
-	print("__init__.py - __main__")
+	# print("__init__.py - __main__")
 	# app.run()
-	http_server = WSGIServer(('', 5005), app, handler_class=WebSocketHandler)
-	print("Serving on port:", 5005)
-	http_server.serve_forever()
+	# http_server = WSGIServer(('', 5005), app, handler_class=WebSocketHandler)
+	# print("Serving on port:", 5005)
+	# http_server.serve_forever()
