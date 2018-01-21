@@ -1,7 +1,7 @@
 __author__ = 'linwe991'
 print("views.py")
 
-from Twidder import app
+# from Twidder import app
 import random
 from flask import Flask, jsonify, request
 from Twidder import database_helper
@@ -9,9 +9,10 @@ from gevent.wsgi import WSGIServer
 from geventwebsocket.handler import WebSocketHandler
 from geventwebsocket.websocket import WebSocketError
 import json
+from Twidder import app
 
-app = Flask(__name__)
-
+# app = Flask(__name__)
+print("views.py app:", app)
 
 # Store webSockets
 active_connections = dict()
@@ -237,10 +238,12 @@ def init_database():
     with app.app_context():
         database_helper.init_db(DATABASE)
 
+init_database()
 
-if __name__ == "__main__":
-    print("views.py - __main__")
-    init_database()
-    # app.run(port=5004, debug=1)
-    http_server = WSGIServer(('', 5004), app, handler_class=WebSocketHandler)
-    http_server.serve_forever()
+
+# if __name__ == "__main__":
+#     print("views.py - __main__")
+#     init_database()
+#     # app.run(port=5004, debug=1)
+#     http_server = WSGIServer(('', 5004), app, handler_class=WebSocketHandler)
+#     http_server.serve_forever()

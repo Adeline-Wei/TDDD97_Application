@@ -10,7 +10,7 @@ DB = None
 def init_db(db_name):
     global DB
     DB = get_db(db_name)
-    with open('database.schema', mode='r') as f:
+    with open('Twidder/database.schema', mode='r') as f:
         try:
             DB.cursor().executescript(f.read())
             DB.commit()
