@@ -33,9 +33,9 @@ print("__init__.py app: ", app)
 
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 	# pass
-	print("__init__.py - __main__")
+	# print("__init__.py - __main__")
 	# app.run()
 	# http_server = WSGIServer(('', 5005), app, handler_class=WebSocketHandler)
 	# print("Serving on port:", 5005)
