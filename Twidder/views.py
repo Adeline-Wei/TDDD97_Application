@@ -239,6 +239,8 @@ def init_database():
 
 DATABASE = 'database.db'
 init_database()
+http_server = WSGIServer(('', 5001), app, handler_class=WebSocketHandler)
+http_server.serve_forever()
 
 if __name__ == "__main__":
     print("__main__")
