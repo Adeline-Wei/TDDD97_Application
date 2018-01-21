@@ -18,7 +18,7 @@ def index():
     return app.send_static_file('client.html')
 
 print("__init__.py - Outside the scope")
-PORT = 5000
+PORT = 5005
 while True:
 	try:
 		http_server = WSGIServer(('', PORT), app, handler_class=WebSocketHandler)
