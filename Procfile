@@ -1,1 +1,1 @@
-web: gunicorn Twidder:run
+web: gunicorn Twidder:app
