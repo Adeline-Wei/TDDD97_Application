@@ -1,1 +1,1 @@
-web: uwsgi Twidder
+web gunicorn Twidder:app
